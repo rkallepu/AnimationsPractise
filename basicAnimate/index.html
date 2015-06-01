@@ -1,0 +1,26 @@
+<!Doctype html>
+<html ng-app="myApp">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="../bower_components/angular/angular.js"></script>
+    <script src="../bower_components/angular-animate/angular-animate.js"></script>
+    <script>
+        angular.module('myApp',['ngAnimate']).controller('MyController', function ($scope){
+            $scope.message = 'Hello';
+        });
+    </script>
+</head>
+<body>
+        <div ng-controller="MyController">
+            {{message}}
+            <p>
+                <input type="button" value="set" ng-click="myCssVar='css-class'">
+                <input type="button" value="clear" ng-click="myCssVar=''">
+                <br>
+                <span ng-class="myCssVar">CSS-Animated Text</span>
+            </p>
+        </div>
+</body>
+</html>

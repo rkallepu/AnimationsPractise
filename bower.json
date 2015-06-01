@@ -1,0 +1,19 @@
+{
+  "name": "magellan-May-29",
+  "version": "0.0.0",
+  "homepage": "https://github.com/rkallepu/magellan-May-29",
+  "authors": [
+    "rkallepu <rashmika23@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.4.0"
+  }
+}
