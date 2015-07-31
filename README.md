@@ -1,2 +1,3 @@
-# magellan-May-29
+# Animations Practise
 Angular JS CSS Animations
+CSS 3 Animations
