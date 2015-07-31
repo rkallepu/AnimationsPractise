@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        body {
+            height: 100%;
+            font: 200 1em 'Helvetica Neue';
+            padding: 0;
+            margin: 0;
+            perspective: 1000px;
+            perspective-origin: 50% 75%;
+            transform-style: preserve-3d;
+        }
+        button {
+            margin: 1em;
+        }
+        div {
+            height: 200px;
+            width: 200px;
+            margin: 10em 30em;
+            transform-style: preserve-3d;
+            position: relative;
+        }
+        .cubeFace {
+            width: 200px;
+            height: 200px;
+            background-color: rgba(0,0,255,0.36);
+            text-align: center;
+            font-size: 5em;
+            font-weight: bold;
+            opacity: 0.75;
+            position: absolute;
+            transition: transform 2s;
+        }
+        .cubeFace.front {
+            transform: translateZ(100px);
+        }
+        .cubeFace.back {
+            transform: rotateY(180deg) translateZ(100px);
+        }
+        .cubeFace.right {
+            transform: rotateY(90deg) translateZ(100px);
+        }
+        .cubeFace.left {
+            transform: rotateY(-90deg) translateZ(100px);
+        }
+        .cubeFace.top {
+            transform: rotateX(90deg) translateZ(100px);
+        }
+        .cubeFace.bottom {
+            transform: rotateX(-90deg) translateZ(100px);
+        }
+        .cubeFace.innerFront {
+            transform: translateZ(50px) scale(0.5);
+        }
+        .cubeFace.innerBack {
+            transform: rotateY(180deg) translateZ(50px) scale(0.5);
+        }
+        .cubeFace.innerRight {
+            transform: rotateY(90deg) translateZ(50px) scale(0.5);
+        }
+        .cubeFace.innerLeft {
+            transform: rotateY(-90deg) translateZ(50px) scale(0.5);
+        }
+        .cubeFace.innerTop {
+            transform: rotateX(90deg) translateZ(50px) scale(0.5);
+        }
+        .cubeFace.innerBottom {
+            transform: rotateX(-90deg) translateZ(50px) scale(0.5);
+        }
+        /* SPIN code */
+        .ring {
+            width: 200px;
+            height: 200px;
+            background-color: rgba(0,0,255,0.36);
+            text-align: center;
+            font-size: 5em;
+            font-weight: bold;
+            opacity: 0.75;
+            position: absolute;
+            transition: transform 2s;
+        }
+        .ring.front {
+            transform: translateZ(500px);
+        }
+        .ring.back {
+            transform: rotateY(30deg) translateZ(500px);
+        }
+        .ring.right {
+            transform: rotateY(60deg) translateZ(500px);
+        }
+        .ring.left {
+            transform: rotateY(90deg) translateZ(500px);
+        }
+        .ring.top {
+            transform: rotateY(120deg) translateZ(500px);
+        }
+        .ring.bottom {
+            transform: rotateY(150deg) translateZ(500px);
+        }
+        .ring.innerFront {
+            transform: rotateY(180deg) translateZ(500px);
+        }
+        .ring.innerBack {
+            transform: rotateY(210deg) translateZ(500px);
+        }
+        .ring.innerRight {
+            transform: rotateY(240deg) translateZ(500px);
+        }
+        .ring.innerLeft {
+            transform: rotateY(270deg) translateZ(500px);
+        }
+        .ring.innerTop {
+            transform: rotateY(300deg) translateZ(500px);
+        }
+        .ring.innerBottom {
+            transform: rotateY(330deg) translateZ(500px);
+        }
+        .rotateCube {
+            animation: rotateBox 5s infinite linear;
+            animation-fill-mode: forwards;
+        }
+        @keyframes rotateBox {
+            from {
+                transform: rotateY(0deg);
+            }
+            to {
+                transform: rotateY(360deg);
+            }
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var btn = document.querySelector('button');
+            btn.addEventListener('click', function () {
+                var inputs = document.querySelectorAll('input');
+                for(var i = 0; i < inputs.length; i++) {
+                    if (inputs[i].classList.contains('cubeFace')) {
+                        inputs[i].classList.remove('cubeFace');
+                        inputs[i].classList.add('ring');
+                    } else {
+                        inputs[i].classList.add('cubeFace');
+                        inputs[i].classList.remove('ring');
+                    }
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+<button>Click to animate</button>
+<div class="rotateCube">
+    <input type="text" name="data" class="cubeFace top"/>
+    <input type="text" name="data" class="cubeFace bottom"/>
+    <input type="text" name="data" class="cubeFace left"/>
+    <input type="text" name="data" class="cubeFace right"/>
+    <input type="text" name="data" class="cubeFace front"/>
+    <input type="text" name="data" class="cubeFace back"/>
+    <input type="text" name="data" class="cubeFace innerTop"/>
+    <input type="text" name="data" class="cubeFace innerBottom"/>
+    <input type="text" name="data" class="cubeFace innerLeft"/>
+    <input type="text" name="data" class="cubeFace innerRight"/>
+    <input type="text" name="data" class="cubeFace innerFront"/>
+    <input type="text" name="data" class="cubeFace innerBack"/>
+</div>
+</body>
+</html>

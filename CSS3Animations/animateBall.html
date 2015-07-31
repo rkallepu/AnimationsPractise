@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        .outer{
+            height: 400px;
+            width: 400px;
+            border: 1px solid black;
+            margin: 3em;
+        }
+        .ball {
+            height: 10%;
+            width: 10%;
+            border-radius: 100%;
+            background-color: green;
+        }
+        .ball:hover{
+            animation-play-state: paused;
+        }
+
+        @keyframes animateBall {
+            0% {
+                transform: translateY(0px);
+                width: 10%;
+            }
+            90%{
+                width: 10%;
+            }
+            95%{
+                width: 12.5%;
+            }
+            100%{
+                transform: translateY(360px);
+                width: 15%;
+            }
+        }
+        .animate {
+            animation: animateBall 1s ease-in infinite alternate;
+            animation-fill-mode: forwards;
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var ball = document.querySelector('div.ball');
+            ball.classList.toggle('animate');
+        });
+    </script>
+</head>
+<body>
+<div class="outer">
+    <div class="ball"></div>
+</div>
+
+</body>
+</html>

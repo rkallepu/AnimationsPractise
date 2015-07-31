@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        div#container {
+            width: 20em;
+            height: 20em;
+            margin: 3em auto;
+            position: relative;
+        }
+        div.swatch {
+            width: 15%;
+            height: 50%;
+            margin: 0 auto;
+            background-color: red;
+            position: absolute;
+            transform-origin: 50% 100%;
+            left: 42.5%
+        }
+        div.part {
+            float: left;
+            width: 100%;
+            height: 33.3333333333%;
+            color: red;
+        }
+        button{
+            position: absolute;
+            left: 30em;
+            top: 1em;
+        }
+
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var container = document.getElementById('container');
+            for (var i = 0, len = 12; i < len; i++) {
+                var div = createSwatch();
+                div.style.transform = 'rotate(' + (30 * i) + 'deg)';
+                container.appendChild(div);
+            }
+
+            var btn = document.getElementById('btn');
+            container.rot = 0;
+            btn.addEventListener('click', function () {
+                var arr = /rotate\((\d+)deg\)/.exec(container.style.transform);
+
+                if (arr) {
+                    console.log(+arr[1]);
+                    container.style.transform = 'rotate(' + (30 + +arr[1]) + 'deg)';
+                } else {
+                    container.style.transform = 'rotate(30deg)';
+                }
+            });
+        });
+
+        function createSwatch() {
+            var div = document.createElement('div');
+            div.className = 'swatch';
+            var rgb = [];
+            for (var j = 0; j < 3; j++) {
+                var part = document.createElement('div');
+                part.className = 'part';
+                if( j == 0)
+                {
+                    rgb = randomGenerator();
+                    part.style.backgroundColor = 'rgb(' + rgb.join(',') + ')';
+                }
+                else{
+                    rgb = colorShades(rgb);
+                    part.style.backgroundColor = 'rgb(' + rgb.join(',') + ')';
+                }
+
+                div.appendChild(part);
+            }
+            console.log(colorShades([255,158,129]));
+            return div;
+        }
+        //console.log(randomGenerator());
+        function randomGenerator() {
+            var colors = [];
+            for (var i = 0; i < 3; i++) {
+                colors.push(Math.floor(Math.random() * 255));
+            }
+            return colors;
+        }
+
+        function colorShades(rgb){
+            rgb[0] = Math.max(0, Math.min(255, rgb[0] - Math.round(255 * - (10 / 100))));
+            rgb[1] = Math.max(0, Math.min(255, rgb[1]- Math.round(255 * - (10 / 100))));
+            rgb[2] = Math.max(0, Math.min(255, rgb[2] - Math.round(255 * - (10 / 100))));
+
+            return rgb;
+        }
+    </script>
+</head>
+<body>
+<div id="container">
+</div>
+<button id="btn">Click to rotate</button>
+</body>
+</html>

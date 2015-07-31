@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        body {
+            perspective: 500px;
+        }
+        input {
+            border: 1px solid gray;
+        }
+        #container{
+            position: absolute;
+            left: 10em;
+            top: 10em;
+        }
+        .CubeBox {
+            color: red;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            transform-style: preserve-3d;
+        }
+        .box{
+            width: 15em;
+            height: 3em;
+            position: absolute;
+        }
+        .front{ transform: rotateY(0deg) translateZ(1em) }
+        .back{ transform: rotateY(180deg) translateZ(1em) }
+        .right{ transform: rotateY(90deg) translateZ(1em) }
+        .left{ transform: rotateY(-90deg) translateZ(1em) }
+        .top{ transform: rotateX(90deg) translateZ(1em) }
+        .bottom{ transform: rotateX(-90deg) translateZ(1em) }
+
+        button{
+            position: absolute;
+            left: 20em;
+            width: 10em;
+            height: 4em;
+        }
+
+        .box-animate{
+            animation: boxRotate 2s linear infinite alternate;
+            animation-fill-mode: forwards;
+        }
+
+        @keyframes boxRotate {
+            from{ transform: rotateX(0deg) ; transform-origin: 50% 50%}
+            to{ transform: rotateX(90deg); transform-origin: 50% 50% }
+        }
+
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var btn = document.querySelector('button');
+            var box = document.querySelector('div.CubeBox');
+            btn.addEventListener('click', function () {
+                if (box.classList.contains('box-animate')) {
+                    box.classList.remove('box-animate');
+                } else {
+                    box.classList.add('box-animate');
+                }
+            })
+        });
+    </script>
+</head>
+<body>
+<div id="container">
+    <div class="CubeBox">
+        <input type="text" name="data" class="back box">
+        <input type="text" name="data" class="top box">
+        <input type="text" name="data" class="bottom box">
+        <input type="text" name="data" class="left box">
+        <input type="text" name="data" class="right box">
+        <input type="text" name="data" class="front box">
+    </div>
+    <button>Press to turn</button>
+</div>
+</body>
+</html>
